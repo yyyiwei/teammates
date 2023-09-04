@@ -25,6 +25,8 @@ public class Account extends BaseEntity {
 
     private String email;
 
+    private String description;
+
     @Unindex
     @Serialize
     private Map<String, Instant> readNotifications;
