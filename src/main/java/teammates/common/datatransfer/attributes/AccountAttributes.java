@@ -96,7 +96,8 @@ public final class AccountAttributes extends EntityAttributes<Account> {
 
     public void setDescription(String description) {
         this.description = description;
-    
+
+    }
 
     public Map<String, Instant> getReadNotifications() {
         return readNotifications;
