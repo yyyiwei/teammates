@@ -135,8 +135,7 @@ public class AccountAttributesTest extends BaseAttributesTest {
 
     @Test
     public void testValueOf() {
-        Account genericAccount = new Account("id", "Joe", "joe@example.com", 
-                                             "A software engineering student.", new HashMap<>());
+        Account genericAccount = new Account("id", "Joe", "joe@example.com", "A software engineering student.", new HashMap<>());
 
         AccountAttributes observedAccountAttributes = AccountAttributes.valueOf(genericAccount);
 
