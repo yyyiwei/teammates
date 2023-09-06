@@ -54,7 +54,5 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Upload Code Coverage to Codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Code Coverage Report
+        uses: ArtiomTr/jest-coverage-report-action@v2
