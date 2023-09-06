@@ -48,6 +48,9 @@ jobs:
       - name: Install Node.js dependencies
         run: npm ci
 
+        env:
+          CI: true
+
       - name: Run tests
         run: npm test -- --coverage
 
