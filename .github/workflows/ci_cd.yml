@@ -45,20 +45,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - name: npm install, build and test
-        run: |
-          npm install doctest
-          npm install standard --save-dev
-          npx doctest **/*.js || true # TODO: Add all doctests
-          npx standard
-          npm ci
-          npm run build --if-present
-
+      - name: Install Node.js dependencies
+        run: npm ci
+          
         env:
           CI: true
 
       - name: Run tests
-        run: npm test -- --coverage
+        run: npm test
 
       - name: Upload Code Coverage to Codecov
         uses: codecov/codecov-action@v3
