@@ -107,6 +107,7 @@
         "test": {
           "builder": "@angular-builders/jest:run",
           "options": {
+            "codeCoverage": true,
             "cache": false
           }
         },
