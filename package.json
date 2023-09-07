@@ -4,7 +4,7 @@
     "start": "jest --no-cache",
     "build": "ng build --configuration production",
     "analyze": "webpack-bundle-analyzer src/web/dist/stats.json",
-    "test": "jest --no-cache",
+    "test": "jest --coverage",
     "coverage": "rimraf coverage && ng test --coverage",
     "lint:ts": "ng lint --cache --eslint-config static-analysis/teammates-eslint.yml",
     "lint:css": "stylelint \"src/web/**/*.css\" \"src/web/**/*.scss\" \"src/web/**/*.html\" --ignore-pattern \"src/web/dist/*.css\" --cache --config static-analysis/teammates-stylelint.yml",
@@ -81,9 +81,8 @@
     "typescript": "~4.7.4",
     "webpack-bundle-analyzer": "^4.8.0"
   },
-  "standard": {
-    "env": [
-      "jest"
-    ]
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": ["json", "html"]
   }
 }
