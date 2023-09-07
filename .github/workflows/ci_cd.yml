@@ -41,7 +41,9 @@ jobs:
           cache: 'npm'
 
       - name: Install Node.js dependencies
-        run: npm ci
+        run: 
+          npx standard
+          npm ci
           
         env:
           CI: true
