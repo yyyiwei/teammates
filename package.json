@@ -1,7 +1,7 @@
 {
   "scripts": {
     "ng": "ng",
-    "start": "jest --no-cache",
+    "start": "ng serve",
     "build": "ng build --configuration production",
     "analyze": "webpack-bundle-analyzer src/web/dist/stats.json",
     "test": "jest --coverage",
