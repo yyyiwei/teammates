@@ -4,7 +4,7 @@
     "start": "jest --no-cache",
     "build": "ng build --configuration production",
     "analyze": "webpack-bundle-analyzer src/web/dist/stats.json",
-    "test": "jest --coverage",
+    "test": "jest --config ./jest.config.js",
     "coverage": "rimraf coverage && ng test --coverage",
     "lint:ts": "ng lint --cache --eslint-config static-analysis/teammates-eslint.yml",
     "lint:css": "stylelint \"src/web/**/*.css\" \"src/web/**/*.scss\" \"src/web/**/*.html\" --ignore-pattern \"src/web/dist/*.css\" --cache --config static-analysis/teammates-stylelint.yml",
