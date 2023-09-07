@@ -41,9 +41,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Node.js dependencies
-        run: |
-          npm install --save-dev babel-jest @babel/core @babel/preset-env
-          npm ci
+        run: npm ci
           
         env:
           CI: true
