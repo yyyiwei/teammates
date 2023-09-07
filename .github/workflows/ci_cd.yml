@@ -42,6 +42,7 @@ jobs:
 
       - name: Install Node.js dependencies
         run: |
+          npm install standard --save-dev
           npx standard
           npm ci
           
