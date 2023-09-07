@@ -47,7 +47,7 @@ jobs:
           CI: true
 
       - name: Run tests
-        run: npm test -- --codeCoverage=true
+        run: npm test -- --coverage
 
       - name: Upload Code Coverage to Codecov
         uses: codecov/codecov-action@v3
