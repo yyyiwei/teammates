@@ -41,7 +41,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Node.js dependencies
-        run: 
+        run: |
           npx standard
           npm ci
           
