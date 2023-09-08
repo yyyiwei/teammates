@@ -1,95 +1,61 @@
 package teammates.storage.search;
 
-import java.util.ArrayList;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrDocument;
+
+import teammates.common.datatransfer.attributes.NotificationAttributes;
+import teammates.common.exception.SearchServiceException;
+import teammates.storage.api.NotificationsDb;
+
+import java.util.Comparator;
 import java.util.List;
-import java.util.Scanner;
 
-/**
- * Define the class for notification.
- */
-class Notification {
-	private String notificationId;
-	private String title;
-	private String message;
+public class NotificationSearchManager extends SearchManager<NotificationAttributes> {
 
-	// Constructors, getters, and setters
-	public Notification(String notificationId, String title, String message) {
-		this.notificationId = notificationId;
-		this.title = title;
-		this.message = message;
-	}
+    private final NotificationsDb notificationsDb = NotificationsDb.inst();
 
-	public String getNotificationId() {
-		return notificationId;
-	}
+    public NotificationSearchManager(String searchServiceHost, boolean isResetAllowed) {
+        super(searchServiceHost, isResetAllowed);
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    @Override
+    String getCollectionName() {
+        return "notifications";
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    @Override
+    NotificationSearchDocument createDocument(NotificationAttributes notification) {
+        return new NotificationSearchDocument(notification);
+    }
 
-	public boolean containsKeyword(String keyword) {
-		return title.contains(keyword) || message.contains(keyword);
-	}
+    @Override
+    NotificationAttributes getAttributeFromDocument(SolrDocument document) {
+        // Implement how to retrieve attributes from SolrDocument
+        // For example:
+        // String notificationId = (String) document.getFirstValue("notificationId");
+        // return notificationsDb.getNotificationById(notificationId);
+        return null; // Placeholder, replace with actual code
+    }
 
-	@Override
-	public String toString() {
-		return "Notification{" +
-				"title='" + title + '\'' +
-				", message='" + message + '\'' +
-				'}';
-	}
-}
+    @Override
+    void sortResult(List<NotificationAttributes> result) {
+        // Implement how to sort the result list
+        // For example:
+        // result.sort(Comparator.comparing(NotificationAttributes::getCreatedAt).reversed());
+    }
 
-/**
- * Manages the search functionality for notifications.
- */
-public class NotificationSearchManager {
-	private static List<Notification> notifs = new ArrayList<>();
+    /**
+     * Searches for notifications.
+     *
+     * @param queryString the query string for the search
+     * @return a list of matching notifications
+     * @throws SearchServiceException if an error occurs during the search
+     */
+    public List<NotificationAttributes> searchNotifications(String queryString) throws SearchServiceException {
+        SolrQuery query = getBasicQuery(queryString);
 
-	static {
-		// Populate the list with sample notifications
-		notifs.add(new Notification("1", "Notification#1", "This is your message."));
-		notifs.add(new Notification("2", "Notification#2", "This is your message."));
-		notifs.add(new Notification("3", "Notification#3", "This is your message."));
-		notifs.add(new Notification("4", "Notification#4", "This is your message."));
-		notifs.add(new Notification("5", "Notification#5", "This is your message."));
-	}
-
-	public static void main(String[] args) {
-		// Create a Scanner for user input
-		Scanner input = new Scanner(System.in);
-
-		// Prompt the user for a keyword to search
-		System.out.print("Enter keyword to search: ");
-		String searchKeyword = input.nextLine();
-
-		// Search for the notification by keyword
-		List<Notification> foundNotifications = searchNotificationsByKeyword(searchKeyword);
-
-		// Display the search results
-		if(!foundNotifications.isEmpty()) {
-			System.out.print("\n");
-			System.out.println("Notifications found:");
-			for (Notification notification : foundNotifications) {
-				System.out.println(notification);
-			}
-		} else {
-			System.out.println("No notifications found.");
-		}
-	}
-
-	// Search for a notification by keyword in the list
-	private static List<Notification> searchNotificationsByKeyword(String keyword) {
-		List<Notification> foundNotifications = new ArrayList<>();
-		for (Notification notification : notifs) {
-			if (notification.containsKeyword(keyword)) {
-				foundNotifications.add(notification);
-			}
-		}
-		return foundNotifications;
-	}
+        QueryResponse response = performQuery(query);
+        return convertDocumentToAttributes(response.getResults());
+    }
 }
