@@ -1,7 +1,12 @@
+package teammates.storage.search;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Define the class for notification.
+ */
 class Notification {
 	private String notificationId;
 	private String title;
@@ -39,6 +44,9 @@ class Notification {
 	}
 }
 
+/**
+ * Manages the search functionality for notifications.
+ */
 public class NotificationSearchManager {
 	private static List<Notification> notifs = new ArrayList<>();
 
