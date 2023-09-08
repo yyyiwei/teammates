@@ -39,7 +39,7 @@ class Notification {
 	}
 }
 
-public class SearchNotification {
+public class SearchNotifications {
 	private static List<Notification> notifs = new ArrayList<>();
 
 	static {
