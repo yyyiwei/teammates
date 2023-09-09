@@ -25,8 +25,8 @@ public class NotificationSearchManager extends SearchManager<NotificationAttribu
     }
 
     @Override
-    NotificationSearchDocument createDocument(NotificationAttributes notification) {
-        return new NotificationSearchDocument(notification);
+    SearchDocument createDocument(NotificationAttributes notification) {
+        return new SearchDocument(notification);
     }
 
     @Override
