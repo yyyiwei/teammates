@@ -8,7 +8,9 @@ import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.OnSave;
 import com.googlecode.objectify.annotation.Translate;
 
-// Represents user-specific settings in the system
+/**
+ * Represents user-specific settings in the system.
+ */
 @Entity
 @Index
 public class UserSettings extends BaseEntity {
@@ -17,13 +19,17 @@ public class UserSettings extends BaseEntity {
     private String id;
 
     // Add fields to represent user-specific settings here.
+    // Example:
     private boolean emailNotificationsEnabled;
     private boolean darkModeEnabled;
 
     @Translate(InstantTranslatorFactory.class)
     private Instant updatedAt;
 
-    // Instantiates a new user settings object with default settings.
+    /**
+     * Instantiates a new user settings object with default settings.
+     * You can modify this constructor to initialize the settings fields.
+     */
     public UserSettings() {
         // Initialize user-specific settings with default values.
         this.emailNotificationsEnabled = true;
@@ -55,10 +61,11 @@ public class UserSettings extends BaseEntity {
         return updatedAt;
     }
 
-    // Updates the updatedAt timestamp when saving.
+    /**
+     * Updates the updatedAt timestamp when saving.
+     */
     @OnSave
     public void updateLastUpdateTimestamp() {
         this.updatedAt = Instant.now();
     }
 }
-
